@@ -119,12 +119,7 @@ server:
   endpoint: "/api"
 
 database:
-  host: "localhost"
-  port: 5432
-  user: "postgres"
-  password: "postgres"
-  name: "parity"
-  sslmode: "disable"
+  url: "postgres://postgres:postgres@postgres:5432/parity?sslmode=disable"
 ```
 
 ### CLI Usage
