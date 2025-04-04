@@ -149,7 +149,18 @@ func (sb *ServerBuilder) InitDatabase() *ServerBuilder {
 	defer cancel()
 
 	sb.dbManager = db.GetDBManager()
-	if err := sb.dbManager.Connect(ctx, sb.config.Database.URL); err != nil {
+
+	URL := fmt.Sprintf(
+		"postgres://%s:%s@%s:%s/%s",
+		sb.config.Database.Username,
+		sb.config.Database.Password,
+		sb.config.Database.Host,
+		sb.config.Database.Port,
+		sb.config.Database.Database_name,
+	)
+	
+
+	if err := sb.dbManager.Connect(ctx, URL); err != nil {
 		sb.err = fmt.Errorf("failed to connect to database: %w", err)
 		return sb
 	}
